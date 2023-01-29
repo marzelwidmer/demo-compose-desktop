@@ -1,0 +1,54 @@
+name: Build and Publish KMM
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  PACKAGE_NAME: com.github.username/reponame
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build for Android
+        run: ./gradlew build
+
+      - name: Publish to GitHub Packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-artifact
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build for iOS
+        run: ./gradlew build
+
+      - name: Publish to GitHub Packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: ios-artifact
+          path: app/build/outputs/apk/debug/app-debug.apk
