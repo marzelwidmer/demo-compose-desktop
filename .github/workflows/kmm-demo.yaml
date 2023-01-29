@@ -1,3 +1,5 @@
+name: KMM Demo
+
 on: [push]
 
 jobs:
