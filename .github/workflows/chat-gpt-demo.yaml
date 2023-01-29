@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  PACKAGE_NAME: com.github.username/reponame
+  PACKAGE_NAME: com.github.marzelwidmer/demo-compose-desktop
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
