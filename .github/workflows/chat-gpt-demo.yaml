@@ -50,9 +50,6 @@ jobs:
       - name: Build for iOS
         run: ./gradlew build
 
-      - name: Run a one-line script
-        run: ls -la build/compose/binaries/main
-
       - name: Publish to GitHub Packages
         uses: actions/upload-artifact@v2
         with:
